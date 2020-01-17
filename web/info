@@ -1,0 +1,54 @@
+//Header.js - component
+
+import React, { useState } from 'react';
+
+//Desesntruturação é basicamente pegar um vetor(array) e dividir em variaveis...
+
+//Props são todas as propriedade repassadas para esse componente... no caso props é passado como parametro da funcao 
+//que receberá os valores passados no atributos do componente...
+function Header(props) {
+    const [counter, setCounter] = useState(0);
+    function incrementCounter(){
+        setCounter(counter + 1);
+    }
+
+    return (
+        <>
+          <h1>Contador: {counter}</h1>
+          <button onClick={incrementCounter}>Incrementar</button>
+        </>
+    );
+}
+
+export default Header;
+-------------------------------------------------------------------------------------------------------------------------
+//Component App()
+
+import React from 'react';
+
+//Tres conceitos principais do React
+//Componente: é uma função que retorna algum conteudo HTML
+//Propriedade: A partir o momento que é passado um atributo em um elemento HTML no react isso é chamado de propriedade
+//Estado: É uma informação mantida, lida ou atualizada pelo proprio componente...
+
+import Header from './Header';
+
+function App() {
+  return ( //para nao atrapalhar a estilizacao utiliza-se o fragment uma tag sem nomenclatura englobando os 
+    //componentes(uma div como container...)
+    //Passando propriedade title para o componente
+    <>
+      <Header title="Componente Header"/>
+    </>
+  );
+}
+
+export default App;
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+

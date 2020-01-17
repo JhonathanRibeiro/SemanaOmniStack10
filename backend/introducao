@@ -1,0 +1,46 @@
+const express = require('express');
+
+const app = express();
+
+//Informando o formato de envio de dados JSON para o express
+//o metodo .use() informa que o método ou oque foi definido será válido para
+//todas as rotas da aplicação...
+app.use(express.json());//agora o express entende requisições que tem o corpo no formato JSON
+
+//principais metodos HTTP: get, post, put, delete
+
+//Tipos de parâmtros do express
+//Query(QueryParams):
+/*
+  Query params são quase 90% das vezes usados no método GET,
+  porque o metod get não aceita Body(corpo), Quando usar?
+  - Em uma rota que retorna uma lista de usuários por exemplo, e que 
+  voce queira filtrar, (imagine que voce tem um input de busca no front), quando voce for 
+  passar essa informação para o backend, qual que é a busca do usuário, é enviado como um 
+  queryParam, eles são incorporados na URL na req feita ao backend
+  Esses queryparams podem ser acessíveis por meio do comando req.query(), são usados para filtros, ordenação, 
+  paginação, listagem, ...
+*/ 
+//Route(RouteParams):
+/**
+ * Routeparams são usados nos metodos DELETE e PUT por se especificar na maioria das vezes para um usuario ou registro no 
+ * banco. Para acessar esse método é utilizado req.params(Identificar um recurso na alteração ou remoção)
+ */
+//Body:
+/**
+ * Body é principalmente utilizado nos métodos POST e PUT, pois tanto par alterar uma informação quanto criar 
+ * é necessário enviar ao servidor essas informações pelo corpo(body) da requisição, por se tratar de uma API RESTFULL
+ * nesse curso será utilizado o formato JSON para trafegar os dados... para acessar o corpo da requisição 
+ * utiliza-se o req.body(Dados para criação ou alteração de um registro)
+ * 
+ * Por padrão o express nao entende diretamente o JSON, precisa informar que será enviado os dados por meio desse método
+ * 
+ * 
+ */
+
+app.post('/users', (req, res)=>{
+    console.log(req.body);
+    return res.json({message: "Hello OmniStack!"});
+});
+
+app.listen(3333);
